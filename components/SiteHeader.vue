@@ -2,7 +2,7 @@
   <client-only>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect"
       text-color="#fff" background-color="#00b38a" active-text-color="#fff">
-      <el-menu-item index="0">负责任采购网</el-menu-item>
+      <el-menu-item index="0">XXXX网</el-menu-item>
       <div class="flex-grow" />
       <el-sub-menu index="1" v-if="userLogined">
         <template #title><el-icon>
@@ -18,18 +18,15 @@
               </path>
               <path d="M127.6 933.3m-40.9 0a40.9 40.9 0 1 0 81.8 0 40.9 40.9 0 1 0-81.8 0Z" fill="#f6f3f3" p-id="1867">
               </path>
-            </svg>
-          </el-icon></template>
+            </svg> </el-icon></template>
         <NuxtLink to="/" class="text-link" replace>
           <el-menu-item index="1-3">回到首页</el-menu-item>
         </NuxtLink>
         <NuxtLink to="/setting" class="text-link" replace v-show="userPackage !== ''">
-          <el-menu-item index="1-2">订阅/推送设置</el-menu-item>
+          <el-menu-item index="1-2">设置</el-menu-item>
         </NuxtLink>
         <el-menu-item index="1-1">退出</el-menu-item>
-        <!-- <el-menu-item index="1-3">item three</el-menu-item> -->
       </el-sub-menu>
-      <el-menu-item index="1" v-else>登录/注册</el-menu-item>
     </el-menu>
 
     <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose" :fullscreen="checkIsMobile()">
@@ -42,7 +39,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="handleSubmit">
+          <el-button type="primary" @click="dialogVisible = false">
             确定
           </el-button>
         </span>
@@ -52,51 +49,28 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter, navigateTo, useLogined, useUserInfo, usePackageState, clearAllCookie, ref, checkIsMobile } from '#imports'
+import { ref } from "#imports";
 
-const userLogined = ref(true)
-const userName = ref('test')
-
-const dialogVisible = ref(false)
-const activeIndex = ref('-1')
-
-const userPackage = ref('test')
-
+const dialogVisible = ref(false);
+const activeIndex = ref(0);
+const userLogined = ref(true);
+const userPackage = ref('normal')
 
 const handleSelect = async (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-  if (key === '0') {
-    // await navigateTo('/')
-    await navigateTo('/', { redirectCode: 301, replace: true })
-
-
-  } else if (key === '1') {
-    const ssoUrl = process.env.SSO_URL || 'https://sso.epmap.org'
+  console.log(key, keyPath);
+  if (key === "0") {
+    await navigateTo("/");
+  } else if (key === "1") {
     if (process.client) {
-      window.location.replace(ssoUrl + '?from=' + encodeURIComponent(window.location.href))
+      window.location.replace("https://www.baidu.com");
     }
-  } else if (key === '1-1') {
-    dialogVisible.value = true
+  } else if (key === "1-1") {
+    dialogVisible.value = true;
   }
-}
+};
 
 const handleClose = (done: () => void) => {
   done()
-}
-
-const handleSubmit = () => {
-  // const cookie = useCookie('website-login-cookie')
-  // const cookieUserName = useCookie('website-login-username')
-  // const cookieUserPackage = useCookie('website-login-userpackage')
-  // cookie.value = null
-  // cookieUserName.value = null
-  // cookieUserPackage.value = null
-  clearAllCookie()
-  dialogVisible.value = false
-  userLogined.value = false
-  userName.value = null
-  userPackage.value = null
-  window.location.replace('/')
 }
 
 </script>

@@ -2,6 +2,22 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## BUG
+
+打开 [http://127.0.0.1:3000/setting](http://127.0.0.1:3000/setting)
+
+然后点击 头部右边的 `回到首页` 或者 点击 `XXXX网` 
+
+会发现，CSS 未生效
+
+正常的页面效果
+
+![](./test_images/normal.png)
+
+CSS未生效的效果
+
+![](./test_images/error.png)
+
 ## Setup
 
 Make sure to install the dependencies:

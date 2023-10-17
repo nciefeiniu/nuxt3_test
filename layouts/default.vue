@@ -1,5 +1,5 @@
 <template>
-  <div class="js-noMenu">
+  <div>
     <el-container class="el-container-custom">
       <el-header>
         <SiteHeader />
@@ -18,6 +18,4 @@
 
 </script>
 
-<style>
-</style>
 
